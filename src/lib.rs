@@ -19,12 +19,12 @@ impl Node {
   }
 
   pub fn add(&mut self, value: u32) {
-    if value >= self.value {
+    if value > self.value {
       match self.right {
         None => self.right = Some(Box::new(Self::leaf(value))),
         Some(ref mut node) => node.add(value),
       }
-    } else {
+    } else if value < self.value {
       match self.left {
         None => self.left = Some(Box::new(Self::leaf(value))),
         Some(ref mut node) => node.add(value),
